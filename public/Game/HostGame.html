@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Five in a Row Online</title>
+  <link rel="stylesheet" href="../css/FIAR.css">
+</head>
+
+<body>
+
+<h1>Five in a Row Online</h1>
+
+<h2>Start a new Game</h2>
+
+<p>
+    Please Provide the following details: <br/>
+</p>
+<datalist id = "board-enum">
+    <option value="15x15"></option>
+    <option value="17x17"></option>
+    <option value="19x19"></option>
+</datalist>
+
+    <datalist id = "type-enum">
+        <option value="Gomoku"></option>
+        <option value="Gobang"></option>
+        <option value="Renju"></option>
+        <option value="Pente"></option>
+        <option value="Ninuki Renju"></option>
+        <option value="x-Gewinnt"></option>
+    </datalist>
+<table>
+  <tr>
+      <td>
+          Size of the Board:
+      </td>
+      <td>
+          <input list="board-enum" name="input-name" id = "input-name" value=""/>
+      </td>
+  </tr>
+  <tr>
+      <td>
+          Type of Game:
+      </td>
+      <td>
+          <input list="type-enum" name="input-type" id = "input-type" value=""/>
+      </td>
+  </tr>
+  <tr>
+    <td>
+      Benefit sharing:
+    </td>
+    <td>
+      <input type="checkbox" name="input-bs" id = "input-bs" value=""/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Game Code:
+    </td>
+    <td>
+      <input type="text" name="input-Code" id = "input-Code" value=""/>
+    </td>
+  </tr>
+
+</table>
+<br/>
+<button>Host Game</button>
+
+<br/>
+<br/>
+<a href="../Homepage.html"> Back to Homepage </a>
+
+
+
+</body>
+</html>

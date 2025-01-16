@@ -1,0 +1,29 @@
+
+body{
+  background-color: rgba(226, 214, 85, 0.29);
+  font-family: "Bahnschrift", "Comic Sans MS", "Franklin Gothic Book", ui-rounded;
+  text-align: center;
+}
+
+h1{
+  color: rgba(132, 79, 29, 0.91);
+  text-decoration: underline;
+}
+
+.Links{
+  line-height: 30px;
+}
+
+.center{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bottom{
+  margin-bottom: 0px;
+}
+
+table{
+  margin-left: auto;
+  margin-right: auto;
+}
