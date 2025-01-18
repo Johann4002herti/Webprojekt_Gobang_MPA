@@ -86,6 +86,14 @@
 
 <script>
     $("#StartGame").click(function() {
+        var checked
+        if ($('#input-bs').is(":checked"))
+        {
+            checked = true;
+        } else {
+            checked = false;
+        }
+
         var game = {
             "GameCode" :  $("#input-Code").val(),
             "PlayerOnesTurn" : true,
@@ -100,7 +108,7 @@
             ]
         },
             "Type" : $("#input-type").val(),
-            "BenefitSharing" : $("#input-bs").val(),
+            "BenefitSharing" : checked,
             "GameStatus" : "isRunning"
         };
         console.log(game);
