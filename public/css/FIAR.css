@@ -1,29 +1,82 @@
 
-body{
+#body{
   background-color: rgba(226, 214, 85, 0.29);
   font-family: "Bahnschrift", "Comic Sans MS", "Franklin Gothic Book", ui-rounded;
+  font-size: x-large;
+}
+
+.myheadline{
+  color: rgba(132, 79, 29, 0.91);
+  text-align: left;
+  font-size: xxx-large;
+  text-decoration: underline;
+  padding-left: 2px;
+}
+
+.myButton{
+  background-color: rgb(145, 168, 90);
+  color: rgba(132, 79, 29, 0.91);
+  margin: 2px;
+  border: 1px outset buttonborder;
+  border-radius: 3px;
+  text-decoration: none;
   text-align: center;
 }
 
-h1{
+a:hover{
+  text-decoration: none;
   color: rgba(132, 79, 29, 0.91);
-  text-decoration: underline;
 }
 
-.Links{
-  line-height: 30px;
+.myGameButton{
+  background-color: rgba(226, 214, 85, 0.29);
+  color: rgba(132, 79, 29, 0.91);
+  margin: 2px;
+  padding: 10px;
+  border: 1px outset buttonborder;
+  border-radius: 3px;
+  text-decoration: none;
+  text-align: center;
+  font-size: xxx-large;
 }
 
-.center{
-  margin-left: auto;
-  margin-right: auto;
+#headerButtons{
+  margin: auto;
 }
 
-.bottom{
-  margin-bottom: 0px;
+#header{
+  background-color: rgb(145, 168, 90);
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
-table{
-  margin-left: auto;
-  margin-right: auto;
+#footer{
+  background-color: rgb(145, 168, 90);
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
+#footerButtons{
+  margin: auto;
+}
+
+.centerText{
+  text-align: center;
+}
+
+.mainPart{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.formularDivs{
+  margin: 10px;
+}
+
+input[type="checkbox"] {
+  transform: scale(2);
+  margin: 10px;
+}
+

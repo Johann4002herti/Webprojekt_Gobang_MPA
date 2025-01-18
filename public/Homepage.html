@@ -7,40 +7,84 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
-<body>
-<div class="container-fluid" id="header">
-  <span>Five in a Row</span>
+<body id="body">
+<div class="container-fluid fixed-top" id="header">
+  <div class="row">
+    <span class="col-md-4 myheadline" >Five in a Row</span>
 
-  <a class="col-md-1 float-md-right" href="account/LockOff.html">Log Off</a>
-  <a class="col-md-1 float-md-right" href="account/LockOn.html">Log In</a>
+    <span class="col-md-5"></span>
 
+    <span class="col-md-3 " id="headerButtons">
+      <div class="row flex-nowrap">
+        <span class="col-md-1"></span>
+        <a class="col-md-5  myButton" href="account/LockOn.html">
+          Log In
+        </a>
+
+        <a class="col-md-5  myButton" href="account/LockOff.html">
+          Log out
+        </a>
+        <span class="col-md-1"></span>
+      </div>
+    </span>
+  </div>
 </div>
 
 
-<p>
-Welcome to Five in a Row.<br/><br/>
-</p>
+<div class="container-fluid mainPart">
+  <div class="row">
+    <span class="col-md-4"></span>
+    <span class="col-md-4 d-flex justify-content-center">
+        <p class="centerText">
+          Welcome to Five in a Row.
+        </p>
+  </span>
+    <span class="col-md-4"></span>
+  </div>
+  <div class="row">
+    <span class="col-md-4"></span>
+    <span class="col-md-4 d-flex justify-content-center">
+        <a class="myGameButton " href="Game/HostGame.html">
+          Host a Game
+        </a>
+  </span>
+    <span class="col-md-4"></span>
+  </div>
+  <div class="row">
+    <span class="col-md-4"></span>
+    <span class="col-md-4 d-flex justify-content-center">
+        <a class="myGameButton" href="Game/JoinGame.html">
+          Join a Game
+        </a>
+  </span>
+    <span class="col-md-4"></span>
+  </div>
 
 
-<footer>
-  <table class="Links">
-    <tr>
-      <td><a href="account/LockOn.html"> Log On </a></td>
-      <td>&nbsp;&nbsp;</td>
-      <td><a href="account/LockOff.html"> Log Off </a></td>
-    </tr>
-    <tr>
-      <td><a href="Game/HostGame.html"> Host a Game</a></td>
-      <td>&nbsp;&nbsp;</td>
-      <td><a href="Game/JoinGame.html"> Join a Game</a></td>
-    </tr>
-    <tr>
-      <td><a href="account/AccountEdit.html"> Edit Account </a></td>
-      <td>&nbsp;&nbsp;</td>
-      <td><a href="FAQ.html">FAQ and Help.</a></td>
-    </tr>
-  </table>
 
-</footer>
+</div>
+
+<div class="container-fluid fixed-bottom" id="footer">
+  <div class="row ">
+    <span class="col-md-3">Impressum</span>
+
+    <span class="col-md-3 centerText">Spende</span>
+
+    <span class="col-md-2 centerText"></span>
+
+    <span class="col-md-4 " id="footerButtons">
+      <div class="row flex-nowrap">
+        <span class="col-md-1"></span>
+        <a class="col-md-5  myButton" href="FaQ.html">
+          FAQ
+        </a>
+        <a class="col-md-5  myButton" href="account/AccountEdit.html">
+          Edit Account
+        </a>
+        <span class="col-md-1"></span>
+      </div>
+    </span>
+  </div>
+</div>
 </body>
 </html>
