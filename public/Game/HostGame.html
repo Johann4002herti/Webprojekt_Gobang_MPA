@@ -94,11 +94,13 @@
             checked = false;
         }
 
+        var size = $("#input-size").val().substring(0,1)
+
         var game = {
             "GameCode" :  $("#input-Code").val(),
             "PlayerOnesTurn" : true,
             "Board" : {
-            "Size" : $("#input-size").val(),
+            "Size" : parseInt(size),
                 "Tiles" : [
                 {
                     "Status" : "empty",
