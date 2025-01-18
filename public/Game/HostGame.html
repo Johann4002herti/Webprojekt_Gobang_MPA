@@ -5,7 +5,7 @@
 <title>Five in a Row Online</title>
     <link rel="stylesheet" href="../css/FIAR.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <script href=""></script>
+    <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 </head>
 
 <body id="body">
@@ -42,7 +42,7 @@
     <div class="row formularDivs">
         <span class="col-md-3"></span>
         <span class="col-md-6 d-flex justify-content-center">
-            Size of the Board: &nbsp;<input list="board-enum" name="input-name" id = "input-name" value=""/>
+            Size of the Board: &nbsp;<input list="board-enum" name="input-size" id = "input-size" value=""/>
         </span>
         <span class="col-md-3"></span>
     </div>
@@ -70,7 +70,7 @@
     <div class="row formularDivs">
         <span class="col-md-3"></span>
         <span class="col-md-6 d-flex justify-content-center">
-            <button>Host Game</button>
+            <button id="StartGame">Host Game</button>
         </span>
         <span class="col-md-3"></span>
     </div>
@@ -84,11 +84,43 @@
 </div>
 
 
-
-
-
-
-</div>
+<script>
+    $("#StartGame").click(function() {
+        var game = {
+            "GameCode" :  $("#input-Code").val(),
+            "PlayerOnesTurn" : true,
+            "Board" : {
+            "Size" : $("#input-size").val(),
+                "Tiles" : [
+                {
+                    "Status" : "empty",
+                    "x-coordinate" : 9,
+                    "y-coordinate" : 3
+                }
+            ]
+        },
+            "Type" : $("#input-type").val(),
+            "BenefitSharing" : $("#input-bs").val(),
+            "GameStatus" : "isRunning"
+        };
+        console.log(game);
+        $.ajax({
+            url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/game',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                alert(data);
+            },
+            data: JSON.stringify(game),
+            processData: false,
+            contentType: "application/json; charset=UTF-8",
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Error: ' + xhr.status + '   ' + thrownError);
+            }
+        });
+    });
+</script>
 
 
 </body>
