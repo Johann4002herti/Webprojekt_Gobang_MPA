@@ -127,7 +127,10 @@
             processData: false,
             contentType: "application/json; charset=UTF-8",
             error: function (xhr, ajaxOptions, thrownError) {
-                alert('Error: ' + xhr.status + '   ' + thrownError);
+                if(xhr.status == 500){
+                    alert("Bitte geben sie die geforderten Daten ein!")
+                }
+                //alert('Error: ' + xhr.status + '   ' + thrownError);
             }
         });
     });
