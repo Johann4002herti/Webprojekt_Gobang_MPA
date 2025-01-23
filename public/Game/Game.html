@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Five in a Row Online</title>
+    <link rel="stylesheet" href="../css/FIAR.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+</head>
+
+<body id="body">
+
+<div>
+    <table>
+        <tr>
+            <td>
+                <button id="field">Test</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    $("#field").click(function() {
+        var checked
+        if ($('#input-bs').is(":checked"))
+        {
+            checked = true;
+        } else {
+            checked = false;
+        }
+
+        var size = $("#input-size").val().substring(0,1)
+
+        var game = {
+            "GameCode" :  $("#input-Code").val(),
+            "PlayerOnesTurn" : true,
+            "Board" : {
+            "Size" : parseInt(size),
+                "Tiles" : [
+                {
+                    "Status" : "empty",
+                    "x-coordinate" : 9,
+                    "y-coordinate" : 3
+                }
+            ]
+        },
+            "Type" : $("#input-type").val(),
+            "BenefitSharing" : checked,
+            "GameStatus" : "isRunning"
+        };
+        console.log(game);
+        $.ajax({
+            url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                alert("Daten:" + data.stringify());
+                window.location.href = "Game.html"
+            },
+            data: JSON.stringify(game),
+            processData: false,
+            contentType: "application/json; charset=UTF-8",
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Error: ' + xhr.status + '   ' + thrownError);
+            }
+        });
+    });
+</script>
+
+
+</body>
+</html>

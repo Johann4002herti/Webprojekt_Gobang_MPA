@@ -120,7 +120,8 @@
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
-                alert("Daten:" + data.stringify());
+                alert(data);
+                window.location.href = "Game.html"
             },
             data: JSON.stringify(game),
             processData: false,
