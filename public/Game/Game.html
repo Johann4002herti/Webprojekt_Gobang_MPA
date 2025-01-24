@@ -25,7 +25,7 @@
     let boardsize = 18;
     let gameStatus = "isRunning";
 
-    let gameCode = Werteliste(location.search)[0];
+    let gameCode = Werteliste(location.search)["gamecode"];
 
     while (gameStatus === "isRunning") {
         console.log("nächster GET")
