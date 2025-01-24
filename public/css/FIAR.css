@@ -71,6 +71,18 @@ a:hover{
     transform: translateY(-50%);
 }
 
+.tableBoard{
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding: 0px;
+}
+.tableMarginPadding{
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+}
+
 .formularDivs{
   margin: 10px;
 }
@@ -78,5 +90,33 @@ a:hover{
 input[type="checkbox"] {
   transform: scale(2);
   margin: 10px;
+}
+
+#board{
+  margin: auto;
+}
+
+.blackField{
+  border: none;
+  background-color: black;
+  margin: 0px;
+  height: 40px;
+  width: 40px;
+}
+
+.whiteField{
+  border: none;
+  background-color: white;
+  margin: 0px;
+  height: 40px;
+  width: 40px;
+}
+
+.field{
+  display: grid;
+  border: none;
+  margin: 0px;
+  height: 40px;
+  width: 40px;
 }
 

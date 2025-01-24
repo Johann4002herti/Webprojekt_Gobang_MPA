@@ -10,64 +10,77 @@
 
 <body id="body">
 
-<div>
-    <table>
-        <tr>
-            <td>
-                <button id="field">Test</button>
-            </td>
-        </tr>
-    </table>
+<div class="container-fluid mainPart">
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-6" id="board">
+    </div>
+    <div class="col-md-3">
+
+    </div>
 </div>
 
 <script>
-    $("#field").click(function() {
-        var checked
-        if ($('#input-bs').is(":checked"))
-        {
-            checked = true;
-        } else {
-            checked = false;
-        }
+    let boardsize = 18;
+    let gameStatus = "isRunning";
 
-        var size = $("#input-size").val().substring(0,1)
+    while (gameStatus === "isRunning") {
+           $.ajax({
+               url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game',
+               type: 'get',
+               dataType: 'json',
+               contentType: 'application/json',
+               success: function (data) {
 
-        var game = {
-            "GameCode" :  $("#input-Code").val(),
-            "PlayerOnesTurn" : true,
-            "Board" : {
-            "Size" : parseInt(size),
-                "Tiles" : [
-                {
-                    "Status" : "empty",
-                    "x-coordinate" : 9,
-                    "y-coordinate" : 3
-                }
-            ]
-        },
-            "Type" : $("#input-type").val(),
-            "BenefitSharing" : checked,
-            "GameStatus" : "isRunning"
-        };
-        console.log(game);
-        $.ajax({
-            url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game',
-            type: 'post',
-            dataType: 'json',
-            contentType: 'application/json',
-            success: function (data) {
-                alert("Daten:" + data.stringify());
-                window.location.href = "Game.html"
-            },
-            data: JSON.stringify(game),
-            processData: false,
-            contentType: "application/json; charset=UTF-8",
-            error: function (xhr, ajaxOptions, thrownError) {
-                alert('Error: ' + xhr.status + '   ' + thrownError);
-            }
-        });
-    });
+                   let DS = "<table class='tableBoard'>";
+                    for (let i = 0; i < data.Board.Size; i++) {
+                        DS += "<tr class='tableMarginPadding'>";
+                        for (let j = 0; j < data.Board.Size; j++){
+                            DS +=   "<td class='tableMarginPadding'>" +
+                                        "<img src='../../ressources/Gobang/background.png' class='field' id='"+i+"_"+j+"' alt='' onclick='checkStatus("+i+","+j+")'>"+
+                                    "</td>";
+                        }
+                        DS += "</tr>";
+                    }
+                    DS += "</table>";
+
+                    $("#board").html(DS);
+
+                   data.Board.Tiles.forEach(function (entry) {
+                       if(entry.Status === "playerOne"){
+                       $("#" + entry["x-coordinate"] + "_"+ entry["y-coordinate"]).html(
+                           checkStatus(entry["x-coordinate"],entry["y-coordinate"])
+                       )}
+                       else if (entry.Status === "playerTwo"){
+                           $("#" + entry["x-coordinate"] + "_"+ entry["y-coordinate"]).html(
+                               checkStatus(entry["x-coordinate"],entry["y-coordinate"])
+                           )
+                       }
+                   })
+               },
+               data: JSON.stringify(game),
+               processData: false,
+               contentType: "application/json; charset=UTF-8",
+               error: function (xhr, ajaxOptions, thrownError) {
+                   alert('Error: ' + xhr.status + '   ' + thrownError);
+               }
+           });
+        sleep(2000);
+       };
+
+
+
+
+
+
+    function checkStatus(i,j) {
+        console.log("it works")
+        $("#"+i+"_"+j).attr("src","../../ressources/Gobang/whitePiece.png");
+    }
+
 </script>
+
 
 
 </body>
