@@ -121,7 +121,7 @@
             contentType: 'application/json',
             success: function (data) {
                 alert(data);
-                window.location.href = "Game.html"
+                window.location.href = "Game.html?gamecode="+$('#input-Code').val();
             },
             data: JSON.stringify(game),
             processData: false,

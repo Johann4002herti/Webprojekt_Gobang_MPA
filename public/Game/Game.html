@@ -25,9 +25,12 @@
     let boardsize = 18;
     let gameStatus = "isRunning";
 
+    let gameCode = Werteliste(location.search)[0];
+
     while (gameStatus === "isRunning") {
+        console.log("nächster GET")
            $.ajax({
-               url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game',
+               url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game/entries?gamecode='+gameCode,
                type: 'get',
                dataType: 'json',
                contentType: 'application/json',
@@ -79,6 +82,20 @@
         $("#"+i+"_"+j).attr("src","../../ressources/Gobang/whitePiece.png");
     }
 
+    function Werteliste (querystring) {
+        if (querystring == '') return;
+        var wertestring = querystring.slice(1);
+        var paare = wertestring.split("&");
+        var paar, name, wert;
+        for (var i = 0; i < paare.length; i++) {
+            paar = paare[i].split("=");
+            name = paar[0];
+            wert = paar[1];
+            name = unescape(name).replace("+", " ");
+            wert = unescape(wert).replace("+", " ");
+            this[name] = wert;
+        }
+    }
 </script>
 
 
