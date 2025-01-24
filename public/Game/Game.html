@@ -12,7 +12,6 @@
 
 <div class="container-fluid mainPart">
     <div class="col-md-3">
-
     </div>
     <div class="col-md-6" id="board">
     </div>
@@ -22,29 +21,43 @@
 </div>
 
 <script>
-    let boardsize = 18;
     let gameStatus = "isRunning";
+    let playersTurn;
 
-    let gameCode = localStorage.getItem('gamecode');
+    let gameCode = localStorage.getItem('gameCode');
+    let localPlayer = localStorage.getItem("localPlayer");
 
-    while (gameStatus === "isRunning") {
-        console.log("nächster GET")
-           $.ajax({
-               url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game/entries?GameCode='+gameCode,
-               type: 'get',
-               dataType: 'json',
-               contentType: 'application/json',
-               processData: false,
-               contentType: "application/json; charset=UTF-8",
-               success: function (data) {
+    $(document).ready(function () {
+        getBoard();
+        setInterval(getBoard,5000);
+    })
 
-                   let DS = "<table class='tableBoard'>";
+    async function getBoard() {
+        if(gameStatus === "isRunning") {
+            console.log("nächster GET")
+            $.ajax({
+                url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game?GameCode=' + gameCode,
+                type: 'get',
+                dataType: 'json',
+                contentType: 'application/json',
+                processData: false,
+                contentType: "application/json; charset=UTF-8",
+                success: function (data) {
+                    if(data.PlayerOnesTurn){
+                        playersTurn = "One"
+                    } else {
+                        playersTurn = "Two"
+                    }
+                    gameStatus = data.GameStatus
+
+
+                    let DS = "<table class='tableBoard'>";
                     for (let i = 0; i < data.Board.Size; i++) {
                         DS += "<tr class='tableMarginPadding'>";
-                        for (let j = 0; j < data.Board.Size; j++){
-                            DS +=   "<td class='tableMarginPadding'>" +
-                                        "<img src='../../ressources/Gobang/background.png' class='field' id='"+i+"_"+j+"' alt='' onclick='checkStatus("+i+","+j+")'>"+
-                                    "</td>";
+                        for (let j = 0; j < data.Board.Size; j++) {
+                            DS += "<td class='tableMarginPadding'>" +
+                                "<img src='../../ressources/Gobang/background.png' class='field' id='" + i + "_" + j + "' alt='' onclick='checkStatus(" + i + "," + j + ")'>" +
+                                "</td>";
                         }
                         DS += "</tr>";
                     }
@@ -52,45 +65,35 @@
 
                     $("#board").html(DS);
 
-                   data.Board.Tiles.forEach(function (entry) {
-                       if(entry.Status === "playerOne"){
-                       $("#" + entry["x-coordinate"] + "_"+ entry["y-coordinate"]).html(
-                           checkStatus(entry["x-coordinate"],entry["y-coordinate"])
-                       )}
-                       else if (entry.Status === "playerTwo"){
-                           $("#" + entry["x-coordinate"] + "_"+ entry["y-coordinate"]).html(
-                               checkStatus(entry["x-coordinate"],entry["y-coordinate"])
-                           )
-                       }
-                   })
-               },
-               error: function (xhr, ajaxOptions, thrownError) {
-                   alert('Error: ' + xhr.status + '   ' + thrownError);
-               }
-           });
-        sleep(2000);
-       };
+                    data.Board.Tiles.forEach(function (entry) {
+                        if (entry.Status === "playerOne") {
+                            $("#" + entry["x-coordinate"] + "_" + entry["y-coordinate"]).html(
+                                checkStatus(entry["x-coordinate"], entry["y-coordinate"])
+                            )
+                        } else if (entry.Status === "playerTwo") {
+                            $("#" + entry["x-coordinate"] + "_" + entry["y-coordinate"]).html(
+                                checkStatus(entry["x-coordinate"], entry["y-coordinate"])
+                            )
+                        }
+                    })
 
-
-   /* let DS = "<table class='tableBoard'>";
-    for (let i = 0; i < 15; i++) {
-        DS += "<tr class='tableMarginPadding'>";
-        for (let j = 0; j < 15; j++){
-            DS +=   "<td class='tableMarginPadding'>" +
-                "<img src='../../ressources/Gobang/background.png' class='field' id='"+i+"_"+j+"' alt='' onclick='checkStatus("+i+","+j+")'>"+
-                "</td>";
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Error: ' + xhr.status + '   ' + thrownError);
+                }
+            });
         }
-        DS += "</tr>";
     }
-    DS += "</table>";
 
-    $("#board").html(DS);
-
-*/
 
     function checkStatus(i,j) {
-        console.log("it works")
-        $("#"+i+"_"+j).attr("src","../../ressources/Gobang/whitePiece.png");
+        //console.log("it works")
+        if(playersTurn === localPlayer && localPlayer === "One"){
+            $("#"+i+"_"+j).attr("src","../../ressources/Gobang/whitePiece.png");
+        } else if (playersTurn === localPlayer && localPlayer === "Two") {
+            $("#"+i+"_"+j).attr("src","../../ressources/Gobang/blackPiece.png");
+        }
+
     }
 
     function Werteliste (querystring) {
