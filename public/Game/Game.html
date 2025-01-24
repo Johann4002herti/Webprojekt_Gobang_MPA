@@ -73,9 +73,21 @@
        };
 
 
+   /* let DS = "<table class='tableBoard'>";
+    for (let i = 0; i < 15; i++) {
+        DS += "<tr class='tableMarginPadding'>";
+        for (let j = 0; j < 15; j++){
+            DS +=   "<td class='tableMarginPadding'>" +
+                "<img src='../../ressources/Gobang/background.png' class='field' id='"+i+"_"+j+"' alt='' onclick='checkStatus("+i+","+j+")'>"+
+                "</td>";
+        }
+        DS += "</tr>";
+    }
+    DS += "</table>";
 
+    $("#board").html(DS);
 
-
+*/
 
     function checkStatus(i,j) {
         console.log("it works")
@@ -83,6 +95,7 @@
     }
 
     function Werteliste (querystring) {
+        console.log(querystring);
         if (querystring == '') return;
         var wertestring = querystring.slice(1);
         var paare = wertestring.split("&");
