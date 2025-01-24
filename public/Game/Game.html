@@ -34,6 +34,8 @@
                type: 'get',
                dataType: 'json',
                contentType: 'application/json',
+               processData: false,
+               contentType: "application/json; charset=UTF-8",
                success: function (data) {
 
                    let DS = "<table class='tableBoard'>";
@@ -62,9 +64,6 @@
                        }
                    })
                },
-               data: JSON.stringify(game),
-               processData: false,
-               contentType: "application/json; charset=UTF-8",
                error: function (xhr, ajaxOptions, thrownError) {
                    alert('Error: ' + xhr.status + '   ' + thrownError);
                }
