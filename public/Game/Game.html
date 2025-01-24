@@ -25,12 +25,12 @@
     let boardsize = 18;
     let gameStatus = "isRunning";
 
-    let gameCode = Werteliste(location.search)[gamecode];
+    let gameCode = localStorage.getItem('gamecode');
 
     while (gameStatus === "isRunning") {
         console.log("nächster GET")
            $.ajax({
-               url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game/entries?gamecode='+gameCode,
+               url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game/entries?GameCode='+gameCode,
                type: 'get',
                dataType: 'json',
                contentType: 'application/json',

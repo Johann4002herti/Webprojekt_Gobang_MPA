@@ -121,7 +121,8 @@
             contentType: 'application/json',
             success: function (data) {
                 alert(data);
-                window.location.href = "Game.html?gamecode="+$('#input-Code').val();
+                localStorage.setItem('gamecode',$('#input-Code').val())
+                window.location.href = "Game.html"
             },
             data: JSON.stringify(game),
             processData: false,
