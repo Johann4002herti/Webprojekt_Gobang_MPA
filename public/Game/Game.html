@@ -31,21 +31,8 @@
     function makeMove(i,j) {
         console.log("called makeMove with: "+i+","+j);
         if(playersTurn === localPlayer) {
-            player = "playerOne";
-            if (localPlayer === "Two") {
-                player = "playerTwo"
-            } else {
-                player = "playerOne"
-            }
-            ;
-            tile = "{" +
-                "          'Status' : '" + player + "'," +
-                "          'x-coordinate' : " + i + "," +
-                "          'y-coordinate' : " + j +
-                "        }"
-
             $.ajax({
-                url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game/board/tiles?Tile=' + tile,
+                url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game/board/tiles?TileX='+i+'&TileY='+j,
                 type: 'put',
                 dataType: 'json',
                 contentType: 'application/json',
