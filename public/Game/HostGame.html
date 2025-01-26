@@ -86,7 +86,7 @@
 
 <script>
     $("#StartGame").click(function() {
-        var checked
+        let checked;
         if ($('#input-bs').is(":checked"))
         {
             checked = true;
@@ -94,24 +94,24 @@
             checked = false;
         }
 
-        var size = $("#input-size").val().substring(0,2)
+        const size = $("#input-size").val().substring(0, 2);
 
         var game = {
-            "GameCode" :  $("#input-Code").val(),
-            "PlayerOnesTurn" : true,
-            "Board" : {
-            "Size" : parseInt(size),
-                "Tiles" : [
-                {
-                    "Status" : "empty",
-                    "x-coordinate" : 9,
-                    "y-coordinate" : 3
-                }
-            ]
-        },
-            "Type" : $("#input-type").val(),
-            "BenefitSharing" : checked,
-            "GameStatus" : "isRunning"
+            "GameCode": $("#input-Code").val(),
+            "PlayerOnesTurn": true,
+            "Board": {
+                "Size": parseInt(size),
+                "Tiles": [
+                    {
+                        "Status": "empty",
+                        "x-coordinate": 9,
+                        "y-coordinate": 3
+                    }
+                ]
+            },
+            "Type": $("#input-type").val(),
+            "BenefitSharing": checked,
+            "GameStatus": "isRunning"
         };
         console.log(game);
         $.ajax({
