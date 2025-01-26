@@ -29,6 +29,7 @@
     let localPlayer = localStorage.getItem("localPlayer");
 
     function makeMove(i,j) {
+        console.log("called makeMove with: "+i+","+j);
         if(playersTurn === localPlayer) {
             player = "playerOne";
             if (localPlayer === "Two") {
@@ -44,7 +45,7 @@
                 "        }"
 
             $.ajax({
-                url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game?Tile=' + tile,
+                url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game/board/tiles?Tile=' + tile,
                 type: 'put',
                 dataType: 'json',
                 contentType: 'application/json',
