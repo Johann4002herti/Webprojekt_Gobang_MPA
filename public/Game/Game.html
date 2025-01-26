@@ -40,8 +40,8 @@
                 data: game,
                 contentType: "application/json; charset=UTF-8",
                 success: function (data) {
-                    console.log("made a move: "+data)
-                    //getBoard()
+                    console.log(data.Message)
+                    getBoard()
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert('Error: ' + xhr.status + '   ' + thrownError);
