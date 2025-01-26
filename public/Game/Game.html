@@ -32,12 +32,11 @@
         console.log("called makeMove with: "+i+","+j);
         //if(playersTurn === localPlayer) {
             $.ajax({
-                url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game/board/tiles?TileX='+parseInt(i)+'&TileY='+parseInt(j),
+                url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game/board/tiles?TileX='+parseInt(i)+'&TileY='+parseInt(j)+'&gameCode='+gameCode,
                 type: 'put',
                 dataType: 'json',
                 contentType: 'application/json',
                 processData: false,
-                data: game,
                 contentType: "application/json; charset=UTF-8",
                 success: function (data) {
                     console.log(data.Message)
