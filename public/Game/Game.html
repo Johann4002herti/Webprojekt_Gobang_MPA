@@ -22,10 +22,46 @@
 
 <script>
     let gameStatus = "isRunning";
-    let playersTurn;
+    let playersTurn = "One";
+    let game;
 
     let gameCode = localStorage.getItem('gameCode');
     let localPlayer = localStorage.getItem("localPlayer");
+
+    function makeMove(i,j) {
+        if(playersTurn === localPlayer) {
+            player = "playerOne";
+            if (localPlayer === "Two") {
+                player = "playerTwo"
+            } else {
+                player = "playerOne"
+            }
+            ;
+            tile = "{" +
+                "          'Status' : '" + player + "'," +
+                "          'x-coordinate' : " + i + "," +
+                "          'y-coordinate' : " + j +
+                "        }"
+
+            $.ajax({
+                url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game?Tile=' + tile,
+                type: 'put',
+                dataType: 'json',
+                contentType: 'application/json',
+                processData: false,
+                data: game,
+                contentType: "application/json; charset=UTF-8",
+                success: function (data) {
+                    console.log("made a move")
+                    getBoard()
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Error: ' + xhr.status + '   ' + thrownError);
+                }
+            });
+        }
+    }
+
 
     $(document).ready(function () {
         getBoard();
@@ -50,6 +86,7 @@
                         playersTurn = "Two"
                     }
                     gameStatus = data.GameStatus
+                    game = data
 
 
                     let DS = "<table class='tableBoard'>";
@@ -57,7 +94,7 @@
                         DS += "<tr class='tableMarginPadding'>";
                         for (let j = 0; j < data.Board.Size; j++) {
                             DS += "<td class='tableMarginPadding'>" +
-                                "<img src='../../ressources/Gobang/background.png' class='field' id='" + i + "_" + j + "' alt='' onclick='checkStatus(" + i + "," + j + ")'>" +
+                                "<img src='../../ressources/Gobang/background.png' class='field' id='" + i + "_" + j + "' alt='' onclick='makeMove("+i+""+j+")'>" +
                                 "</td>";
                         }
                         DS += "</tr>";
@@ -89,9 +126,9 @@
 
     function checkStatus(i,j) {
         //console.log("it works")
-        if(playersTurn === localPlayer && localPlayer === "One"){
+        if(localPlayer === "One"){
             $("#"+i+"_"+j).attr("src","../../ressources/Gobang/whitePiece.png");
-        } else if (playersTurn === localPlayer && localPlayer === "Two") {
+        } else if (localPlayer === "Two") {
             $("#"+i+"_"+j).attr("src","../../ressources/Gobang/blackPiece.png");
         }
 
