@@ -122,7 +122,7 @@
             success: function (data) {
                 alert(data);
                 localStorage.setItem('gameCode',$('#input-Code').val())
-                localStorage.setItem("localPlayerIsOne", "One")
+                localStorage.setItem("localPlayer", "One")
                 window.location.href = "Game.html"
             },
             data: JSON.stringify(game),
