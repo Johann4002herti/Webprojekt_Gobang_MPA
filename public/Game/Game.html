@@ -92,7 +92,7 @@
 
                     data.Board.Tiles.forEach(function (entry) {
                         $("#" + entry["x-coordinate"] + "_" + entry["y-coordinate"]).html(
-                            checkStatus(entry["x-coordinate"], entry["y-coordinate"])
+                            checkStatus(entry["x-coordinate"], entry["y-coordinate"], entry.Status)
                         )
                     })
 
@@ -105,12 +105,14 @@
     }
 
 
-    function checkStatus(i,j) {
+    function checkStatus(i,j, status) {
         //console.log("it works")
-        if(localPlayer == "One"){
+        if(status == "playerOne"){
             $("#"+i+"_"+j).attr("src","../../ressources/Gobang/whitePiece.png");
-        } else if (localPlayer == "Two") {
+        } else if (status == "playerOne") {
             $("#"+i+"_"+j).attr("src","../../ressources/Gobang/blackPiece.png");
+        } else {
+            $("#"+i+"_"+j).attr("src","../../ressources/Gobang/background.png");
         }
 
     }
