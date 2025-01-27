@@ -83,6 +83,27 @@
     </div>
 </div>
 
+<div class="container-fluid fixed-bottom" id="footer">
+    <div class="row ">
+        <span class="col-md-3"></span>
+
+        <span class="col-md-3 centerText"></span>
+
+        <span class="col-md-2 centerText"></span>
+
+        <span class="col-md-4 " id="footerButtons">
+      <div class="row flex-nowrap">
+        <span class="col-md-1"></span>
+          <input type="password" id="clearPropsPassword">
+        <button class="col-md-5  myButton" id="cPButton">
+            Clear Properties
+        </button>
+        <span class="col-md-1"></span>
+      </div>
+    </span>
+    </div>
+</div>
+
 
 <script>
     $("#StartGame").click(function() {
@@ -133,6 +154,25 @@
                     alert("Bitte geben sie die geforderten Daten ein!")
                 }
                 //alert('Error: ' + xhr.status + '   ' + thrownError);
+            }
+        });
+    });
+
+    $("#cPButton").click(function() {
+
+        let password = $('#clearPropsPassword').val();
+
+        $.ajax({
+            url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/clearProps?Password='+password,
+            type: 'put',
+            dataType: 'json',
+            processData: false,
+            contentType: 'application/json; charset=UTF-8',
+            success: function (data) {
+                alert(data.Message);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Error: ' + xhr.status + '   ' + thrownError);
             }
         });
     });
