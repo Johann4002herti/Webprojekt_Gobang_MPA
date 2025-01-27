@@ -66,6 +66,7 @@
                 processData: false,
                 contentType: "application/json; charset=UTF-8",
                 success: function (data) {
+                    console.log(localPlayer);
                     console.log(data);
                     if(data.PlayerOnesTurn){
                         playersTurn = "One"
