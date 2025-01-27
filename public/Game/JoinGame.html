@@ -28,13 +28,43 @@
 
 </table>
 <br/>
-<button>Join Game</button>
+<button id="joinGame">Join Game</button>
 
 <br/>
 <br/>
 <a href="../Homepage.html"> Back to Homepage </a>
 
+<script>
 
+
+
+  $("#joinGame").click(function() {
+
+    let gameCode = $("#input-Code").val();
+
+    $.ajax({
+      url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game?GameCode=' + gameCode,
+      type: 'get',
+      dataType: 'json',
+      contentType: 'application/json',
+      processData: false,
+      contentType: "application/json; charset=UTF-8",
+      success: function (data) {
+        if(data === null){
+          alert("No Game existing with Code: "+gameCode)
+        } else {
+          localStorage.setItem('gameCode',gameCode)
+          localStorage.setItem("localPlayer", "Two")
+          window.location.href = "Game.html"
+        }
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        alert('Error: ' + xhr.status + '   ' + thrownError);
+      }
+    });
+  });
+
+</script>
 
 </body>
 </html>
