@@ -30,7 +30,7 @@
 
     function makeMove(i,j) {
         console.log("called makeMove with: "+i+","+j);
-        //if(playersTurn === localPlayer) {
+        //if(playersTurn == localPlayer) {
             $.ajax({
                 url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game/board/tiles?TileX='+parseInt(i)+'&TileY='+parseInt(j)+'&gameCode='+gameCode,
                 type: 'put',
@@ -56,7 +56,7 @@
     })
 
     async function getBoard() {
-        if(gameStatus === "isRunning") {
+        if(gameStatus == "isRunning") {
             console.log("nächster GET")
             $.ajax({
                 url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game?GameCode=' + gameCode,
@@ -91,15 +91,9 @@
                     $("#board").html(DS);
 
                     data.Board.Tiles.forEach(function (entry) {
-                        if (entry.Status === "playerOne") {
-                            $("#" + entry["x-coordinate"] + "_" + entry["y-coordinate"]).html(
-                                checkStatus(entry["x-coordinate"], entry["y-coordinate"])
-                            )
-                        } else if (entry.Status === "playerTwo") {
-                            $("#" + entry["x-coordinate"] + "_" + entry["y-coordinate"]).html(
-                                checkStatus(entry["x-coordinate"], entry["y-coordinate"])
-                            )
-                        }
+                        $("#" + entry["x-coordinate"] + "_" + entry["y-coordinate"]).html(
+                            checkStatus(entry["x-coordinate"], entry["y-coordinate"])
+                        )
                     })
 
                 },
@@ -113,9 +107,9 @@
 
     function checkStatus(i,j) {
         //console.log("it works")
-        if(localPlayer === "One"){
+        if(localPlayer == "One"){
             $("#"+i+"_"+j).attr("src","../../ressources/Gobang/whitePiece.png");
-        } else if (localPlayer === "Two") {
+        } else if (localPlayer == "Two") {
             $("#"+i+"_"+j).attr("src","../../ressources/Gobang/blackPiece.png");
         }
 
