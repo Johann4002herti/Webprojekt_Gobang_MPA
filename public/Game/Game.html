@@ -30,7 +30,7 @@
 
     function makeMove(i,j) {
         console.log("called makeMove with: "+i+","+j);
-        //if(playersTurn == localPlayer) {
+        if(playersTurn == localPlayer) {
             $.ajax({
                 url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game/board/tiles?TileX='+parseInt(i)+'&TileY='+parseInt(j)+'&gameCode='+gameCode,
                 type: 'put',
@@ -46,7 +46,7 @@
                     alert('Error: ' + xhr.status + '   ' + thrownError);
                 }
             });
-        //}
+        }
     }
 
 
