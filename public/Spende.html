@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Five in a Row Online</title>
+  <link rel="stylesheet" href="css/FIAR.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+</head>
+<body id="body">
+<h1>Five in a Row Online</h1>
+
+<h2>Spende</h2>
+
+<input type="number" step="0.01" min = "0.01" id="amount">
+<button id="spenden">Spenden mit Paypal</button>
+
+
+<a href="./Homepage.html"> Back to Homepage </a>
+
+
+<script>
+  /*$("#spenden").click(function (){
+
+    let payment = {
+      "intent": "sale",
+      "payer": {
+        "payment_method": "paypal"
+      },
+      "transactions": [
+        {
+          "amount": {
+            "total": $("#amount").val(),
+            "currency": "EUR",
+            "details": null
+          },
+          "description": "The payment transaction description.",
+          "custom": "EBAY_EMS_90048630024435",
+          "invoice_number": "48787589673",
+          "payment_options": {
+            "allowed_payment_method": "INSTANT_FUNDING_SOURCE"
+          },
+          "soft_descriptor": "ECHI5786786",
+          "item_list": null
+        }
+      ],
+      "note_to_payer": "Contact us for any questions on your order.",
+      "redirect_urls": null
+    };
+
+    $.ajax({
+      url: 'https://api-m.sandbox.paypal.com/v1/payments/payment',
+      type: 'post',
+      dataType: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify(payment),
+      success: function (data) {
+        alert(data);
+        localStorage.setItem('gameCode',$('#input-Code').val())
+        localStorage.setItem("localPlayer", "One")
+        window.location.href = "Game.html"
+      },
+      data: JSON.stringify(game),
+      processData: false,
+      contentType: "application/json; charset=UTF-8",
+      error: function (xhr, ajaxOptions, thrownError) {
+        if(xhr.status == 500){
+          alert("Bitte geben sie die geforderten Daten ein!")
+        }
+        //alert('Error: ' + xhr.status + '   ' + thrownError);
+      }
+    });
+  });
+
+
+*/
+
+</script>
+</body>
+</html>
