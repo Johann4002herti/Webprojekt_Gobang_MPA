@@ -10,20 +10,27 @@
 
 <body id="body">
 
-<datalist id = "board-enum">
-    <option value="15x15"></option>
-    <option value="17x17"></option>
-    <option value="19x19"></option>
-</datalist>
+<div class="container-fluid fixed-top" id="header">
+    <div class="row">
+        <span class="col-md-4 myheadline" >Five in a Row</span>
 
-<datalist id = "type-enum">
-    <option value="Gomoku"></option>
-    <option value="Gobang"></option>
-    <option value="Renju"></option>
-    <option value="Pente"></option>
-    <option value="Ninuki Renju"></option>
-    <option value="x-Gewinnt"></option>
-</datalist>
+        <span class="col-md-5"></span>
+
+        <span class="col-md-3 " id="headerButtons">
+      <div class="row flex-nowrap">
+        <span class="col-md-1"></span>
+        <a class="col-md-5  myButton" href="account/LockOn.html">
+          Log In
+        </a>
+
+        <a class="col-md-5  myButton" href="account/LockOff.html">
+          Log out
+        </a>
+        <span class="col-md-1"></span>
+      </div>
+    </span>
+    </div>
+</div>
 
 <div class="container-fluid mainPart">
     <div class="row formularDivs">
@@ -42,14 +49,29 @@
     <div class="row formularDivs">
         <span class="col-md-3"></span>
         <span class="col-md-6 d-flex justify-content-center">
-            Size of the Board: &nbsp;<input list="board-enum" name="input-size" id = "input-size" value=""/>
+            Size of the Board: &nbsp;
+            <select name = "input-size" id = "input-size">
+                <option value="15">15x15</option>
+                <option value="17">17x17</option>
+                <option value="19">19x19</option>
+            </select>
+
         </span>
         <span class="col-md-3"></span>
     </div>
     <div class="row formularDivs">
         <span class="col-md-3"></span>
         <span class="col-md-6 d-flex justify-content-center">
-            Type of Game: &nbsp;<input list="type-enum" name="input-type" id = "input-type" value=""/>
+            Type of Game: &nbsp;
+                <select name="input-type" id="input-type">
+                    <option value="Gomoku">Gomoku</option>
+                    <option value="Gobang">Gobang</option>
+                    <!--<option value="Renju"></option>
+                    <option value="Pente"></option>
+                    <option value="Ninuki Renju"></option>
+                    <option value="x-Gewinnt"></option>-->
+                </select>
+
         </span>
         <span class="col-md-3"></span>
     </div>
@@ -115,7 +137,7 @@
             checked = false;
         }
 
-        const size = $("#input-size").val().substring(0, 2);
+        const size = $("#input-size").val();
 
         var game = {
             "GameCode": $("#input-Code").val(),

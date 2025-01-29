@@ -10,36 +10,88 @@
 
 <body id="body">
 
-<h1>Five in a Row Online</h1>
+<div class="container-fluid fixed-top" id="header">
+  <div class="row">
+    <span class="col-md-4 myheadline" >Five in a Row</span>
 
-<h2>Start a new Game</h2>
+    <span class="col-md-5"></span>
 
-<p>
-    Please Provide the following details: <br/>
-</p>
+    <span class="col-md-3 " id="headerButtons">
+      <div class="row flex-nowrap">
+        <span class="col-md-1"></span>
+        <a class="col-md-5  myButton" href="account/LockOn.html">
+          Log In
+        </a>
 
-<table>
-  <tr>
-    <td>
-      Game Code:
-    </td>
-    <td>
-      <input type="text" name="input-Code" id = "input-Code" value=""/>
-    </td>
-  </tr>
+        <a class="col-md-5  myButton" href="account/LockOff.html">
+          Log out
+        </a>
+        <span class="col-md-1"></span>
+      </div>
+    </span>
+  </div>
+</div>
 
-</table>
-<br/>
-<button id="joinGame">Join Game</button>
+<div class="container-fluid mainPart">
+  <div class="row formularDivs">
+    <span class="col-md-4"></span>
+    <span class="col-md-4 d-flex justify-content-center"><h2>Join a Game</h2></span>
+    <span class="col-md-4"></span>
+  </div>
+  <div class="row formularDivs">
+    <span class="col-md-4"></span>
+    <span class="col-md-4 d-flex justify-content-center">
+            <p>
+                Please Provide the following details: <br/>
+            </p></span>
+    <span class="col-md-4"></span>
+  </div>
 
-<br/>
-<br/>
-<a href="../Homepage.html"> Back to Homepage </a>
+  <div class="row formularDivs">
+    <span class="col-md-3"></span>
+    <span class="col-md-6 d-flex justify-content-center">
+            Game Code: &nbsp;<input type="text" name="input-Code" id = "input-Code" value=""/>
+        </span>
+    <span class="col-md-3"></span>
+  </div>
+  <div class="row formularDivs">
+    <span class="col-md-3"></span>
+    <span class="col-md-6 d-flex justify-content-center">
+            <button id="joinGame">Join Game</button>
+        </span>
+    <span class="col-md-3"></span>
+  </div>
+  <div class="row formularDivs">
+    <span class="col-md-3"></span>
+    <span class="col-md-6 d-flex justify-content-center">
+            <a href="../Homepage.html"> Back to Homepage </a>
+        </span>
+    <span class="col-md-3"></span>
+  </div>
+</div>
+
+<div class="container-fluid fixed-bottom" id="footer">
+  <div class="row ">
+    <span class="col-md-3"></span>
+
+    <span class="col-md-3 centerText"></span>
+
+    <span class="col-md-2 centerText"></span>
+
+    <span class="col-md-4 " id="footerButtons">
+      <div class="row flex-nowrap">
+        <span class="col-md-1"></span>
+          <input type="password" id="clearPropsPassword">
+        <button class="col-md-5  myButton" id="cPButton">
+            Clear Properties
+        </button>
+        <span class="col-md-1"></span>
+      </div>
+    </span>
+  </div>
+</div>
 
 <script>
-
-
-
   $("#joinGame").click(function() {
 
     let gameCode = $("#input-Code").val();

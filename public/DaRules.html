@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Five in a Row Online</title>
+  <link rel="stylesheet" href="css/FIAR.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+</head>
+<body id="body">
+
+
+
+<div class="container-fluid fixed-top" id="header">
+  <div class="row">
+    <span class="col-md-4 myheadline" >Five in a Row</span>
+
+    <span class="col-md-5"></span>
+
+    <span class="col-md-3 " id="headerButtons">
+      <div class="row flex-nowrap">
+        <span class="col-md-1"></span>
+        <a class="col-md-5  myButton" href="account/LockOn.html">
+          Log In
+        </a>
+
+        <a class="col-md-5  myButton" href="account/LockOff.html">
+          Log out
+        </a>
+        <span class="col-md-1"></span>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="container-fluid mainPart flex-wrap">
+      <div class="row">
+        <span class="col-md-2"></span>
+        <span class="col-md-8 d-flex justify-content-center">
+          <span class="myheadline">Da Rules</span>
+        </span>
+        <span class="col-md-2"></span>
+      </div>
+      <div class="row">
+        <span class="col-md-2"></span>
+        <span class="col-md-8 d-flex justify-content-center">
+            Type of Game: &nbsp;
+                <select name="input-type" id="input-type" onchange="change()">
+                  <option value="Gomoku">Gomoku</option>
+                  <option value="Gobang">Gobang</option>
+                  <!--<option value="Renju"></option>
+                  <option value="Pente"></option>
+                  <option value="Ninuki Renju"></option>
+                  <option value="x-Gewinnt"></option>-->
+                </select>
+
+        </span>
+        <span class="col-md-2"></span>
+      </div>
+
+      <div class="row">
+        <span class="col-md-12 d-flex justify-content-center">
+          <iframe id = "rules" src="https://de.wikipedia.org/wiki/Gomoku#Spielregeln"></iframe>
+        </span>
+      </div>
+      <div class="row">
+        <span class="col-md-4"></span>
+        <span class="col-md-4 d-flex justify-content-center">
+          <a href="./Homepage.html"> Back to Homepage </a>
+        </span>
+        <span class="col-md-4"></span>
+    </div>
+
+</div>
+
+<div class="container-fluid fixed-bottom" id="footer">
+  <div class="row ">
+    <span class="col-md-3">Impressum</span>
+
+    <span class="col-md-3 centerText">Spende</span>
+
+    <span class="col-md-1 centerText"></span>
+
+    <span class="col-md-5 " id="footerButtons">
+      <div class="row flex-nowrap">
+
+        <a class="col-md-6  myButton" href="Homepage.html">
+          Back to the Homepage
+        </a>
+        <a class="col-md-5  myButton" href="account/AccountEdit.html">
+          Edit Account
+        </a>
+        <span class="col-md-1"></span>
+      </div>
+    </span>
+  </div>
+</div>
+
+<script>
+  function change() {
+    console.log("change Rules")
+    console.log($("#input-type").val())
+    $("#rules").attr("src","https://de.wikipedia.org/wiki/"+$("#input-type").val()+"#Spielregeln")
+  };
+</script>
+
+</body>
+</html>

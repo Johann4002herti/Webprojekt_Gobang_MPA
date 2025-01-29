@@ -5,6 +5,8 @@
 <title>Five in a Row</title>
   <link rel="stylesheet" href="css/FIAR.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+  <script async defer src="https://dailyverses.net/get/verse.js?language=neu"></script>
 </head>
 
 <body id="body">
@@ -33,35 +35,40 @@
 
 <div class="container-fluid mainPart">
   <div class="row">
-    <span class="col-md-4"></span>
-    <span class="col-md-4 d-flex justify-content-center">
-        <p class="centerText">
-          Welcome to Five in a Row.
-        </p>
-  </span>
-    <span class="col-md-4"></span>
+    <span class="col-md-4 d-flex justify-content-center"><div id="verseOfTheDay" class="centerText">DailyVerseEnglish</div></span>
+    <span class="col-md-4">
+        <div class="row">
+        <span class="col-md-1"></span>
+        <span class="col-md-10 d-flex justify-content-center">
+            <p class="centerText">
+              Welcome to Five in a Row.
+            </p>
+      </span>
+        <span class="col-md-1"></span>
+      </div>
+      <div class="row">
+        <span class="col-md-1"></span>
+        <span class="col-md-10 d-flex justify-content-center">
+            <a class="myGameButton " href="Game/HostGame.html">
+              Host a Game
+            </a>
+      </span>
+        <span class="col-md-1"></span>
+      </div>
+      <div class="row">
+        <span class="col-md-1"></span>
+        <span class="col-md-10 d-flex justify-content-center">
+            <a class="myGameButton" href="Game/JoinGame.html">
+              Join a Game
+            </a>
+      </span>
+        <span class="col-md-1"></span>
+      </div>
+        </span>
+        <span class="col-md-4 d-flex justify-content-center">
+          <div id="dailyVersesWrapper" class="centerText">täglicherVersDeutsch</div>
+        </span>
   </div>
-  <div class="row">
-    <span class="col-md-4"></span>
-    <span class="col-md-4 d-flex justify-content-center">
-        <a class="myGameButton " href="Game/HostGame.html">
-          Host a Game
-        </a>
-  </span>
-    <span class="col-md-4"></span>
-  </div>
-  <div class="row">
-    <span class="col-md-4"></span>
-    <span class="col-md-4 d-flex justify-content-center">
-        <a class="myGameButton" href="Game/JoinGame.html">
-          Join a Game
-        </a>
-  </span>
-    <span class="col-md-4"></span>
-  </div>
-
-
-
 </div>
 
 <div class="container-fluid fixed-bottom" id="footer">
@@ -75,8 +82,8 @@
     <span class="col-md-4 " id="footerButtons">
       <div class="row flex-nowrap">
         <span class="col-md-1"></span>
-        <a class="col-md-5  myButton" href="FaQ.html">
-          FAQ
+        <a class="col-md-5  myButton" href="DaRules.html">
+          Rules
         </a>
         <a class="col-md-5  myButton" href="account/AccountEdit.html">
           Edit Account
@@ -86,5 +93,29 @@
     </span>
   </div>
 </div>
+
+
+<script>
+
+  $(document).ready(function () {
+
+    $.ajax({
+      url: 'https://beta.ourmanna.com/api/v1/get',
+      type: 'get',
+      dataType: 'text',
+      contentType: 'application/json',
+      processData: false,
+      contentType: "application/json; charset=UTF-8",
+      success: function (data) {
+        $("#verseOfTheDay").html(data);
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        alert('Error: ' + xhr.status + '   ' + thrownError);
+      }
+    });
+  })
+
+
+</script>
 </body>
 </html>

@@ -126,3 +126,15 @@ input[type="checkbox"] {
   width: 40px;
 }
 
+#verseOfTheDay{
+  margin: auto;
+}
+
+#dailyVersesWrapper{
+  margin: auto;
+}
+
+#rules{
+  height: 400px;
+  width: 1200px;
+}
