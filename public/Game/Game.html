@@ -12,10 +12,10 @@
 
 <div class="container-fluid mainPart">
     <div class="col-md-3">
-    </div>
-    <div class="col-md-6" id="board">
         <div id="Winner" style="display: none">You Won!</div>
         <div id="Loser" style="display: none">You Lose!</div>
+    </div>
+    <div class="col-md-6" id="board">
     </div>
     <div class="col-md-3">
 
@@ -77,7 +77,6 @@
                     }
                     gameStatus = data.GameStatus
                     game = JSON.stringify(data)
-
 
                     let DS = "<table class='tableBoard'>";
                     for (let i = 0; i < data.Board.Size; i++) {

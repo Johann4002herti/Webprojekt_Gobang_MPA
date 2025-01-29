@@ -94,6 +94,12 @@ input[type="checkbox"] {
 
 #board{
   margin: auto;
+  z-index: 20;
+}
+
+.winLoseField{
+  z-index: 20;
+  display: none;
 }
 
 .blackField{
