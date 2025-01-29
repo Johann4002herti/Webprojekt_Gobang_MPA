@@ -14,6 +14,8 @@
     <div class="col-md-3">
     </div>
     <div class="col-md-6" id="board">
+        <div id="Winner" style="display: none">You Won!</div>
+        <div id="Loser" style="display: none">You Lose!</div>
     </div>
     <div class="col-md-3">
 
@@ -82,7 +84,7 @@
                         DS += "<tr class='tableMarginPadding'>";
                         for (let j = 0; j < data.Board.Size; j++) {
                             DS += "<td class='tableMarginPadding'>" +
-                                "<img src='../../ressources/Gobang/background.png' class='field' id='" + i + "_" + j + "' alt='' onclick='makeMove("+i+","+j+")'>" +
+                                "<img src='../../ressources/Gobang/background_1.png' class='field' id='" + i + "_" + j + "' alt='' onclick='makeMove("+i+","+j+")'>" +
                                 "</td>";
                         }
                         DS += "</tr>";
@@ -96,7 +98,19 @@
                             checkStatus(entry["x-coordinate"], entry["y-coordinate"], entry.Status)
                         )
                     })
-
+                    if(gameStatus == "playerOneWon"){
+                        if(localPlayer == "One"){
+                            $("#Winner").attr("Style", "display: block")
+                        }else {
+                            $("#Loser").attr("Style", "display: block")
+                        }
+                    } else if(gameStatus == "playerTwoWon"){
+                        if(localPlayer == "Two"){
+                            $("#Winner").attr("Style", "display: block")
+                        }else {
+                            $("#Loser").attr("Style", "display: block")
+                        }
+                    }
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert('Error: ' + xhr.status + '   ' + thrownError);
@@ -109,11 +123,11 @@
     function checkStatus(i,j, status) {
         //console.log("it works")
         if(status == "playerOne"){
-            $("#"+i+"_"+j).attr("src","../../ressources/Gobang/whitePiece.png");
+            $("#"+i+"_"+j).attr("src","../../ressources/Gobang/whitePiece_1.png");
         } else if (status == "playerTwo") {
-            $("#"+i+"_"+j).attr("src","../../ressources/Gobang/blackPiece.png");
+            $("#"+i+"_"+j).attr("src","../../ressources/Gobang/blackPiece_1.png");
         } else {
-            $("#"+i+"_"+j).attr("src","../../ressources/Gobang/background.png");
+            $("#"+i+"_"+j).attr("src","../../ressources/Gobang/background_1.png");
         }
 
     }
