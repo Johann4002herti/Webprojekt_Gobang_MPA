@@ -107,22 +107,6 @@
   //$(document).ready(function () {
     function getCall() {
 
-      $.ajax({
-        url: 'https://www.bibleserver.com/api/parser?key=c19840c2b0dcd2f043a0a7d90e85a4f0e1ca95b9&text=Johannes3,16',
-        type: 'post',
-        dataType: 'json',
-        processData: false,
-        contentType: "application/json; charset=UTF-8",
-        accessKey: "c19840c2b0dcd2f043a0a7d90e85a4f0e1ca95b9",
-        success: function (data) {
-          alert(data);
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-          alert('Error: ' + xhr.status + '   ' + thrownError);
-        }
-      });
-    }
-    /*
       console.log("button pressed");
       todaysVerse = localStorage.getItem("todaysVerse");
       todaysLinkedVerse = localStorage.getItem("todaysLinkedVerse");
@@ -170,7 +154,6 @@
       });
 
     }
-*/
   //})
 
 
