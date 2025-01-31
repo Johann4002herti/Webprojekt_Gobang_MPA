@@ -115,15 +115,12 @@
         processData: false,
         contentType: "application/json; charset=UTF-8",
         success: function (data) {
-            todaysLinkedVerse = data;
-            console.log(data.Message)
-          $("#verseOfTheDay").html(todaysLinkedVerse);
+          alert(data);
         },
         error: function (xhr, ajaxOptions, thrownError) {
           alert('Error: ' + xhr.status + '   ' + thrownError);
         }
       });
-
     }
     /*
       console.log("button pressed");
