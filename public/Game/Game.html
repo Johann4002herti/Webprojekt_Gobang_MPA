@@ -12,10 +12,10 @@
 
 <div class="container-fluid mainPart">
     <div class="col-md-3">
-        <div id="Winner" style="display: none">You Won!</div>
-        <div id="Loser" style="display: none">You Lose!</div>
     </div>
     <div class="col-md-6" id="board">
+        <div id="Winner" style="display: none">You Won!</div>
+        <div id="Loser" style="display: none">You Lose!</div>
     </div>
     <div class="col-md-3">
     </div>
@@ -97,16 +97,16 @@
                         )
                     })
                     if(gameStatus == "playerOneWon"){
-                        if(localPlayer == "One"){
-                            $("#Winner").attr("Style", "display: block")
-                        }else {
-                            $("#Loser").attr("Style", "display: block")
+                        if(localPlayer == "One") {
+                            $("#board").html("<div id='Winner'>You Won!</div>");
+                        } else {
+                            $("#board").html("<div id='Loser'>You Lose!</div>");
                         }
                     } else if(gameStatus == "playerTwoWon"){
                         if(localPlayer == "Two"){
-                            $("#Winner").attr("Style", "display: block")
+                            $("#board").html("<div id='Winner'>You Won!</div>");
                         }else {
-                            $("#Loser").attr("Style", "display: block")
+                            $("#board").html("<div id='Loser'>You Lose!</div>");
                         }
                     }
                 },
