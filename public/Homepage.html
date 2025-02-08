@@ -36,8 +36,6 @@
 <div class="container-fluid mainPart">
   <div class="row">
     <span class="col-md-4 d-flex justify-content-center">
-      <button onclick="getCall()">makeCall</button>
-      <button onclick="resetlocalStorage()">reset storage</button>
       <div id="verseOfTheDay" class="centerText">DailyVerseEnglish</div></span>
     <span class="col-md-4">
         <div class="row">
@@ -80,16 +78,16 @@
 
     <span class="col-md-3 centerText">Spende</span>
 
-    <span class="col-md-2 centerText"></span>
+    <span class="col-md-1 centerText"></span>
 
-    <span class="col-md-4 " id="footerButtons">
+    <span class="col-md-5 " id="footerButtons">
       <div class="row flex-nowrap">
         <span class="col-md-1"></span>
         <a class="col-md-5  myButton" href="DaRules.html">
           Rules
         </a>
-        <a class="col-md-5  myButton" href="account/AccountEdit.html">
-          Edit Account
+        <a class="col-md-5  myButton" href="CovidStatistics.html">
+          Covid-Statistics
         </a>
         <span class="col-md-1"></span>
       </div>
@@ -100,61 +98,27 @@
 
 <script>
 
-  function resetlocalStorage() {
-    localStorage.setItem("todaysVerse","")
-  }
+  $(document).ready(function () {
 
-  //$(document).ready(function () {
-    function getCall() {
+    todaysVerse = localStorage.getItem("todaysVerse");
 
-      console.log("button pressed");
-      todaysVerse = localStorage.getItem("todaysVerse");
-      todaysLinkedVerse = localStorage.getItem("todaysLinkedVerse");
-
-      $.ajax({
-        url: 'https://beta.ourmanna.com/api/v1/get',
-        type: 'get',
-        dataType: 'text',
-        contentType: 'application/json',
-        processData: false,
-        contentType: "application/json; charset=UTF-8",
-        success: function (data) {
-          console.log("get suceed");
-          if (!(todaysVerse == data)) {
-            console.log("start post");
-            localStorage.setItem("todaysVerse",data);
-            todaysVerse = data.toString()
-            $.ajax({
-              url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/verses?text=' + todaysVerse,
-              type: 'post',
-              dataType: 'json',
-              contentType: 'application/json',
-              processData: false,
-              contentType: "application/json; charset=UTF-8",
-              success: function (data) {
-                if (!(data.Message == "not allowed to post: please wait")){
-                  localStorage.setItem("todaysLinkedVerse", data.Message);
-                  todaysLinkedVerse = data.Message;
-                  console.log(data.Message)
-                }
-                $("#verseOfTheDay").html(todaysLinkedVerse);
-              },
-              error: function (xhr, ajaxOptions, thrownError) {
-                alert('Error: ' + xhr.status + '   ' + thrownError);
-              }
-            });
-          } else {
-            console.log("doesnt did post");
-            $("#verseOfTheDay").html(todaysVerse);
-          }
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-          alert('Error: ' + xhr.status + '   ' + thrownError);
-        }
-      });
-
-    }
-  //})
+    $.ajax({
+      url: 'https://beta.ourmanna.com/api/v1/get',
+      type: 'get',
+      dataType: 'text',
+      contentType: 'application/json',
+      processData: false,
+      contentType: "application/json; charset=UTF-8",
+      success: function (data) {
+        localStorage.setItem("todaysVerse", data.toString());
+        todaysVerse = data.toString();
+        $("#verseOfTheDay").html(todaysVerse);
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        alert('Error: ' + xhr.status + '   ' + thrownError);
+      }
+    });
+  });
 
 
 </script>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Five in a Row Online</title>
+  <link rel="stylesheet" href="css/FIAR.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+</head>
+<body id="body">
+
+
+<div class="container-fluid fixed-top" id="header">
+  <div class="row">
+    <span class="col-md-4 myheadline" >Five in a Row</span>
+
+    <span class="col-md-5 myheadline">Covid-19 Statistics</span>
+
+    <span class="col-md-3 " id="headerButtons">
+      <div class="row flex-nowrap">
+        <span class="col-md-1"></span>
+        <a class="col-md-5  myButton" href="account/LockOn.html">
+          Log In
+        </a>
+
+        <a class="col-md-5  myButton" href="account/LockOff.html">
+          Log out
+        </a>
+        <span class="col-md-1"></span>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="container-fluid mainPart flex-wrap">
+      <div class="row">
+        <span class="col-md-2"></span>
+        <span class="col-md-8 d-flex justify-content-center">
+          <span class="myheadline">Covid-19 Statistics</span>
+        </span>
+        <span class="col-md-2"></span>
+      </div>
+      <div class="row">
+        <span class="col-md-2"></span>
+        <span class="col-md-8 d-flex justify-content-center">
+            Choose a Country: &nbsp;
+                <select name="input-country" id="input-country" onchange="change()">
+                </select>
+
+        </span>
+        <span class="col-md-2"></span>
+      </div>
+
+      <div class="row">
+        <span class="col-md-2"></span>
+        <span class="col-md-8">
+          <table id="statisticsTable" class="table table-bordered table-sm">
+            <thead>
+            <tr>
+              <th scope="col" id="continent">Continent: </th>
+              <th scope="col" id="country">Country: </th>
+            </tr>
+            <tr>
+              <th scope="col" id="population">Population: </th>
+              <th scope="col" id="day">Stand: </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td colspan="2">Cases:</td>
+            </tr>
+            <tr>
+              <td>new: </td>
+              <td id="newCases"> </td>
+            </tr>
+            <tr>
+              <td>active: </td>
+              <td id="activeCases"> </td>
+            </tr>
+            <tr>
+              <td>critical: </td>
+              <td id="criticalCases"> </td>
+            </tr>
+            <tr>
+              <td>recovered: </td>
+              <td id="recoveredCases"> </td>
+            </tr>
+            <tr>
+              <td>total: </td>
+              <td id="totalCases"> </td>
+            </tr>
+            <tr>
+              <td colspan="2">Deaths:</td>
+            </tr>
+            <tr>
+              <td>new: </td>
+              <td id="newDeaths"> </td>
+            </tr>
+            <tr>
+              <td>total: </td>
+              <td id="totalDeaths"> </td>
+            </tr>
+            </tbody>
+          </table>
+        </span>
+        <span class="col-md-2"></span>
+        </span>
+      </div>
+      <div class="row">
+        <span class="col-md-4"></span>
+        <span class="col-md-4 d-flex justify-content-center">
+          <a href="./Homepage.html"> Back to Homepage </a>
+        </span>
+        <span class="col-md-4"></span>
+    </div>
+
+</div>
+
+<div class="container-fluid fixed-bottom" id="footer">
+  <div class="row ">
+    <span class="col-md-3">Impressum</span>
+
+    <span class="col-md-3 centerText">Spende</span>
+
+    <span class="col-md-1 centerText"></span>
+
+    <span class="col-md-5 " id="footerButtons">
+      <div class="row flex-nowrap">
+
+        <a class="col-md-5  myButton" href="DaRules.html">
+          Rules
+        </a>
+        <a class="col-md-6  myButton" href="Homepage.html">
+          Back to the Homepage
+        </a>
+        <span class="col-md-1"></span>
+      </div>
+    </span>
+  </div>
+</div>
+
+<script>
+
+$(document).ready(function () {
+  let countrys = [];
+  countrys = localStorage.getItem("countrys")
+
+  $.ajax({
+    async: true,
+    crossDomain: true,
+    url: 'https://covid-193.p.rapidapi.com/countries',
+    method: 'GET',
+    dataType: 'JSON',
+    headers: {
+      'x-rapidapi-key': '8c328768c8msh0a58953ef5d787cp129285jsnc728b320f358',
+      'x-rapidapi-host': 'covid-193.p.rapidapi.com'
+    },
+    success: function (data){
+      temp = [];
+      for (let responseKey in data.response) {
+        temp.push(data.response[responseKey])
+      }
+      countrys = temp
+      localStorage.setItem("countrys",temp)
+      //console.log(countrys);
+
+      for (let countryKey in countrys) {
+        //console.log(countrys[countryKey])
+        $("#input-country").append("<option value='" + countrys[countryKey] + "'>" + countrys[countryKey] + "</option>");
+
+      }
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+      alert('Error: ' + xhr.status + '   ' + thrownError);
+    }
+  })
+});
+
+  function change() {
+    calls = localStorage.getItem("numberOfCalls")
+    todaysDay = localStorage.getItem("todaysDay");
+
+    if (todaysDay === null){
+      todaysDay = String(new Date().getDate()).padStart(2, '0');
+    }
+    if (todaysDay == String(new Date().getDate()).padStart(2, '0')){
+      localStorage.setItem("todaysDay", todaysDay)
+    } else {
+      console.log("reseted Storage")
+      localStorage.setItem("todaysDay", String(new Date().getDate()).padStart(2, '0'))
+      localStorage.setItem("numberOfCalls", 0)
+    }
+    if(calls === null){
+      calls = 0
+    }
+    console.log(calls)
+    if (calls < 10){
+      console.log($("#input-country").val())
+      $.ajax({
+        url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/covid?country='+ $("#input-country").val(),
+        type: 'post',
+        dataType: 'json',
+        processData: false,
+        contentType: "application/json; charset=UTF-8",
+        success: function (data) {
+          calls++;
+          localStorage.setItem("numberOfCalls", calls)
+          alert("!");
+          //console.log(JSON.stringify(data));
+          $("#continent").html("Continent: "+data.continent)
+          $("#country").html("Country: "+data.country)
+          $("#population").html("Population: "+data.population)
+          $("#day").html("Stand: "+data.day)
+          $("#newCases").html(data.cases.new)
+          $("#activeCases").html(data.cases.active)
+          $("#criticalCases").html(data.cases.critical)
+          $("#recoveredCases").html(data.cases.recovered)
+          $("#totalCases").html(data.cases.total)
+          $("#newDeaths").html(data.deaths.new)
+          $("#totalDeaths").html(data.deaths.total)
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          alert('Error: ' + xhr.status + '   ' + thrownError);
+        }
+      });
+    } else {
+      alert("zu viele Aufrufe für heute!")
+    }
+  };
+
+</script>
+
+</body>
+</html>
