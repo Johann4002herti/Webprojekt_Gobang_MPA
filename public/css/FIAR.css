@@ -71,18 +71,6 @@ a:hover{
     transform: translateY(-50%);
 }
 
-.tableBoard{
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  padding: 0px;
-}
-.tableMarginPadding{
-  display: flex;
-  margin: 0px;
-  padding: 0px;
-}
-
 .formularDivs{
   margin: 10px;
 }
@@ -97,10 +85,6 @@ input[type="checkbox"] {
   z-index: 20;
 }
 
-.winLoseField{
-  z-index: 20;
-  display: none;
-}
 
 .blackField{
   border: none;
@@ -118,13 +102,6 @@ input[type="checkbox"] {
   width: 40px;
 }
 
-.field{
-  display: grid;
-  border: none;
-  margin: 0px;
-  height: 40px;
-  width: 40px;
-}
 
 #verseOfTheDay{
   margin: auto;
@@ -140,6 +117,7 @@ input[type="checkbox"] {
 }
 
 table.table-bordered{
+  z-index: 0;
   border:1px solid black;
   margin-top:20px;
 }
@@ -148,4 +126,29 @@ table.table-bordered > thead > tr > th{
 }
 table.table-bordered > tbody > tr > td{
   border:1px solid black;
+}
+
+.tableBoard{
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding: 0px;
+}
+.tableMarginPadding{
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+}
+
+.field{
+  display: grid;
+  border: none;
+  margin: 0px;
+  height: 40px;
+  width: 40px;
+}
+
+.winLoseField{
+  z-index: 20;
+  display: none;
 }
