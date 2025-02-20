@@ -1,0 +1,12 @@
+{
+  "title" : "Five in a Row",
+  "nrOfStudents" : 1,
+  "team" : "",
+  "members" : [{
+    "firstname" : "Johann-Christopher",
+    "lastname" : "Hertrampf",
+    "matrikelnummer" : 1067819
+  }],
+  "linkToProjectCode" : "",
+  "comment" : ""
+}
