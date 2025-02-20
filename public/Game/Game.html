@@ -84,8 +84,28 @@
         }
     }
 
-
     $(document).ready(function () {
+        window.addEventListener('beforeunload', (event) => {
+            event.preventDefault();
+            event.returnValue = `Are you sure you want to leave?`;
+        });
+        window.addEventListener('pagehide', (event) => {
+            alert("test")
+            $.ajax({
+                url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game?GameCode='+gameCode,
+                type: 'delete',
+                dataType: 'json',
+                contentType: 'application/json',
+                processData: false,
+                contentType: "application/json; charset=UTF-8",
+                success: function (data) {
+                    alert("deleted game")
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Error: ' + xhr.status + '   ' + thrownError);
+                }
+            });
+        });
         getBoard();
         setInterval(getBoard,5000);
     })
@@ -164,23 +184,7 @@
 
     }
 
-    function Werteliste (querystring) {
-        console.log(querystring);
-        if (querystring == '') return;
-        var wertestring = querystring.slice(1);
-        var paare = wertestring.split("&");
-        var paar, name, wert;
-        for (var i = 0; i < paare.length; i++) {
-            paar = paare[i].split("=");
-            name = paar[0];
-            console.log(name);
-            wert = paar[1];
-            console.log(wert);
-            name = unescape(name).replace("+", " ");
-            wert = unescape(wert).replace("+", " ");
-            this[name] = wert;
-        }
-    }
+
 </script>
 
 
