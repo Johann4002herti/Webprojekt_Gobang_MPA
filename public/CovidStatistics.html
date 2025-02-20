@@ -198,7 +198,7 @@ $(document).ready(function () {
         success: function (data) {
           calls++;
           localStorage.setItem("numberOfCalls", calls)
-          alert("!");
+          //alert("!");
           //console.log(JSON.stringify(data));
           $("#continent").html("Continent: "+data.continent)
           $("#country").html("Country: "+data.country)

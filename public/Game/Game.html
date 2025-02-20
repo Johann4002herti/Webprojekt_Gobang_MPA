@@ -89,8 +89,7 @@
             event.preventDefault();
             event.returnValue = `Are you sure you want to leave?`;
         });
-        window.addEventListener('pagehide', (event) => {
-            alert("test")
+        window.addEventListener('pagehide', async (event) => {
             $.ajax({
                 url: 'https://tranquil-ravine-52782-34bf80f0f653.herokuapp.com/api/game?GameCode='+gameCode,
                 type: 'delete',
@@ -99,7 +98,7 @@
                 processData: false,
                 contentType: "application/json; charset=UTF-8",
                 success: function (data) {
-                    alert("deleted game")
+                    //alert(data.Message)
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert('Error: ' + xhr.status + '   ' + thrownError);

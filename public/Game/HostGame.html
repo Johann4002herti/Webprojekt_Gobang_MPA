@@ -159,7 +159,7 @@
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
-                alert(data);
+                //alert(data);
                 localStorage.setItem('gameCode',$('#input-Code').val())
                 localStorage.setItem("localPlayer", "One")
                 window.location.href = "Game.html"
@@ -168,10 +168,10 @@
             processData: false,
             contentType: "application/json; charset=UTF-8",
             error: function (xhr, ajaxOptions, thrownError) {
-                if(xhr.status == 500){
-                    alert("Bitte geben sie die geforderten Daten ein!")
-                }
-                //alert('Error: ' + xhr.status + '   ' + thrownError);
+                /*if(xhr.status == 500){
+                   //alert("Bitte geben Sie die geforderten Daten ein!")
+                }*/
+                alert('Error: ' + xhr.status + '   ' + thrownError);
             }
         });
     });
@@ -187,7 +187,7 @@
             processData: false,
             contentType: 'application/json; charset=UTF-8',
             success: function (data) {
-                alert(data.Message);
+                //alert(data.Message);
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert('Error: ' + xhr.status + '   ' + thrownError);
